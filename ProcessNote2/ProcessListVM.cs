@@ -10,6 +10,14 @@ namespace ProcessNote2
     {
         private static ProcessList processesListObject = new ProcessList();
 
+        private ProcessDetailsVM adamToCiul;
+
+        public ProcessDetailsVM AdamToCiul
+        {
+            get => adamToCiul;
+            set => adamToCiul = value;
+        }
+
         public ProcessListVM()
         {
             CreateProcessVMObjects();
@@ -24,7 +32,7 @@ namespace ProcessNote2
 
         public void LoadProcessDetails(int id)
         {
-
+            AdamToCiul = new ProcessDetailsVM(id);
         }
 
     }
