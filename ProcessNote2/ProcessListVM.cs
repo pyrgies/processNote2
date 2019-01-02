@@ -10,6 +10,11 @@ namespace ProcessNote2
     {
         private static ProcessList processesListObject = new ProcessList();
 
+        public ProcessListVM()
+        {
+            LoadNames();
+        }
+        
         public List<string> Names { get; set; } = new List<string>();
 
         public void LoadNames()
@@ -19,5 +24,6 @@ namespace ProcessNote2
                 Names.Add(process.ProcessName);
             }
         }
+
     }
 }
