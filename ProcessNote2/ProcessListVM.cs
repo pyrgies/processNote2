@@ -22,5 +22,10 @@ namespace ProcessNote2
             Processes = processesListObject.ProcessesList.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
         }
 
+        public void LoadProcessDetails(int id)
+        {
+
+        }
+
     }
 }
