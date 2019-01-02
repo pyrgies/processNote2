@@ -7,15 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="398*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-    <ListView Padding="5" ItemsSource="{Binding Names}" Background="LightCyan" FontFamily="Monospace" FontSize="16">
-      <ListView.DataContext>
-        <local:ProcessListVM></local:ProcessListVM>
-      </ListView.DataContext>
-    </ListView>
-      
+        <ListView Padding="5" ItemsSource="{Binding Processes}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
+            <ListView.DataContext>
+                <local:ProcessListVM></local:ProcessListVM>
+            </ListView.DataContext>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>

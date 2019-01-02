@@ -12,17 +12,14 @@ namespace ProcessNote2
 
         public ProcessListVM()
         {
-            LoadNames();
+            CreateProcessVMObjects();
         }
         
-        public List<string> Names { get; set; } = new List<string>();
+        public List<ProcessVM> Processes { get; set; } = new List<ProcessVM>();
 
-        public void LoadNames()
+        public void CreateProcessVMObjects()
         {
-            foreach (var process in processesListObject.ProcessesList)
-            {
-                Names.Add(process.ProcessName);
-            }
+            Processes = processesListObject.ProcessesList.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
         }
 
     }
