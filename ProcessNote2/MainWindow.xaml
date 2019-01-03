@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:ProcessNote2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <local:ProcessListVM/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="21*"/>
@@ -18,17 +15,17 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Padding="5" ItemsSource="{Binding Processes}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
+        <ListView Padding="5" ItemsSource="{Binding ProcessVMs}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
+            <ListView.DataContext>
+                <local:ProcessListVM></local:ProcessListVM>
+            </ListView.DataContext>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
-            </ListView.View>  
+            </ListView.View>
         </ListView>
-        <Grid Grid.Column="1" Grid.Row="0">
-            <TextBox Text="{Binding AdamToCiul.Memory, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        </Grid>
 
     </Grid>
 </Window>

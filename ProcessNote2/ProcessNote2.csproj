@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProcessDetailsVM.cs" />
-    <Compile Include="ProcessList.cs" />
+    <Compile Include="ProcessesModel.cs" />
     <Compile Include="ProcessListVM.cs" />
     <Compile Include="ProcessVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

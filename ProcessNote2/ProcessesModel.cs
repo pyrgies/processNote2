@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace ProcessNote2
 {
-    class ProcessList
+    class ProcessesModel
     {
         // creating List with objects of type Process
 
-        private List<Process> processesList = new List<Process>(Process.GetProcesses());
+        private List<Process> processes = new List<Process>(Process.GetProcesses());
 
-        public List<Process> ProcessesList
+        public List<Process> Processes
         {
-            get => processesList;
-            set => processesList = value;
+            get => processes;
+
         }
     }
 }
