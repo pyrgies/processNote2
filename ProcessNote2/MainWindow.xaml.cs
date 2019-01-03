@@ -24,5 +24,10 @@ namespace ProcessNote2
         {
             InitializeComponent();
         }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("dupa");
+        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
 
 namespace ProcessNote2
 {
-    class ProcessListVM
+    class ProcessListVM: INotifyPropertyChanged
     {
         private static ProcessList processesListObject = new ProcessList();
 
@@ -15,7 +16,11 @@ namespace ProcessNote2
         public ProcessDetailsVM AdamToCiul
         {
             get => adamToCiul;
-            set => adamToCiul = value;
+            set
+            {
+                adamToCiul = value;
+                NotifyPropertyChanged();
+            } 
         }
 
         public ProcessListVM()
@@ -34,6 +39,13 @@ namespace ProcessNote2
         {
             AdamToCiul = new ProcessDetailsVM(id);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")  
+        {  
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }  
 
     }
 }
