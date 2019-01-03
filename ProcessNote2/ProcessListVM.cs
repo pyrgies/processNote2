@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
 
 
 namespace ProcessNote2
@@ -45,7 +47,28 @@ namespace ProcessNote2
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")  
         {  
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }  
+        }
 
+        public ICommand costam;
+
+        public ICommand ShowProcessNameCommand
+        {
+            get
+            {
+                return costam = new RelayCommand(CanView, DisplayMessage);
+            }
+        }
+
+        private bool CanView(object parameter)
+        {
+            return true;
+        }       
+        
+
+        private void DisplayMessage(object parameter)
+        {
+             MessageBox.Show("BLA BLA");
+            
+        }
     }
 }
