@@ -27,7 +27,6 @@ namespace ProcessNote2
 
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("dupa");
         }
     }
 }
