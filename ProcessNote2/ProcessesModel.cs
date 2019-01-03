@@ -17,7 +17,6 @@ namespace ProcessNote2
         public List<Process> Processes
         {
             get => processes;
-
         }
     }
 }
