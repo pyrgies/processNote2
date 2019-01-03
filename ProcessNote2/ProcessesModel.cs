@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ProcessNote2
 {
@@ -12,7 +17,6 @@ namespace ProcessNote2
         public List<Process> Processes
         {
             get => processes;
-
         }
     }
 }
