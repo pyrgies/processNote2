@@ -15,7 +15,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Padding="5" ItemsSource="{Binding Processes}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
+        <ListView Padding="5" ItemsSource="{Binding ProcessVMs}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
             <ListView.DataContext>
                 <local:ProcessListVM></local:ProcessListVM>
             </ListView.DataContext>
