@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 
 namespace ProcessNote2
 {
-    class ProcessListVM: INotifyPropertyChanged
+    class ProcessListVM: ObservableObject
     {
         private static ProcessesModel processesList = new ProcessesModel();
+        private ICommand _saveProductCommand;
+        private string adamek = "Adam";
+
+        public string Adamek
+        {
+            get => adamek;
+            set
+            {
+                adamek = value;
+                OnPropertyChanged("Adamek");
+            }
+        }
 
         private ProcessDetailsVM adamToCiul;
 
@@ -19,7 +32,7 @@ namespace ProcessNote2
             set
             {
                 adamToCiul = value;
-                NotifyPropertyChanged();
+                OnPropertyChanged("AdamToCiul");
             } 
         }
 
@@ -35,17 +48,26 @@ namespace ProcessNote2
             ProcessVMs = processesList.Processes.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
         }
 
-        public void LoadProcessDetails(int id)
+        public void LoadProcessDetails()
         {
-            AdamToCiul = new ProcessDetailsVM(id);
+            AdamToCiul = new ProcessDetailsVM();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")  
-        {  
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }  
+        public ICommand SaveProductCommand
+        {
+            get
+            {
+                if (_saveProductCommand == null)
+                {
+                    _saveProductCommand = new RelayCommand(
+                        param => Adamek = "Pedał"
+
+                    );
+                }
+                return _saveProductCommand;
+            }
+        }
+
 
     }
 }
