@@ -8,18 +8,18 @@ namespace ProcessNote2
 {
     class ProcessListVM
     {
-        private static ProcessList processesListObject = new ProcessList();
+        private static ProcessesModel processesList = new ProcessesModel();
 
         public ProcessListVM()
         {
-            CreateProcessVMObjects();
+            CreateListOfProcessesVM();
         }
         
-        public List<ProcessVM> Processes { get; set; } = new List<ProcessVM>();
+        public List<ProcessVM> ProcessVMs { get; set; } = new List<ProcessVM>();
 
-        public void CreateProcessVMObjects()
+        public void CreateListOfProcessesVM()
         {
-            Processes = processesListObject.ProcessesList.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
+            ProcessVMs = processesList.Processes.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
         }
 
         public void LoadProcessDetails(int id)

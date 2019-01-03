@@ -15,16 +15,16 @@ namespace ProcessNote2
         {
             var process = Process.GetProcessById(id);
 
-            Start = process.StartTime;
-            Memory = 15;
-            Cpu = 20;
-            rTime = DateTime.Now - Start;
+            StartTime = process.StartTime;
+            MemoryUsage = 15;
+            CpuUsage = 20;
+            runTime = DateTime.Now - StartTime;
         }
 
-        public DateTime Start { get; }
-        public double Memory { get; }
-        public double Cpu { get; }
-        public TimeSpan rTime { get; }
+        public DateTime StartTime { get; }
+        public double MemoryUsage { get; }
+        public double CpuUsage { get; }
+        public TimeSpan runTime { get; }
 
 
     }
