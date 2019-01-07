@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -41,16 +43,30 @@ namespace ProcessNote2
             CreateListOfProcessesVM();
         }
         
-        public List<ProcessVM> ProcessVMs { get; set; } = new List<ProcessVM>();
+        private ObservableCollection<ProcessVM> processVMs = new ObservableCollection<ProcessVM>();
+
+        public ObservableCollection<ProcessVM> ProcessVMs
+        {
+            get => processVMs;
+            set
+            {
+                processVMs = value;
+                OnPropertyChanged("ProcessVMs");
+            }
+        }
 
         public void CreateListOfProcessesVM()
         {
-            ProcessVMs = processesList.Processes.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
+            foreach (var process in processesList.Processes)
+            {
+                ProcessVMs.Add(new ProcessVM(process.ProcessName, process.Id));
+            }
         }
 
         public void LoadProcessDetails()
         {
-            AdamToCiul = new ProcessDetailsVM();
+            Adamek = "krzysiu zjeb nie umie naprawic kurwa smiec jebany. Ja i Albi. Kurwo." +
+                     " i przegrywasz w jebanego ping ponga jak ja w pilkarzyki hehe chuj.";
         }
 
         public ICommand SaveProductCommand
@@ -60,7 +76,8 @@ namespace ProcessNote2
                 if (_saveProductCommand == null)
                 {
                     _saveProductCommand = new RelayCommand(
-                        param => Adamek = "Pedał"
+                        param => LoadProcessDetails()
+                        
 
                     );
                 }
