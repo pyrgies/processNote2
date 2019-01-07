@@ -28,7 +28,7 @@
             </ListView.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding SaveProductCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=listView, Mode=OneWay}"/>
+                    <i:InvokeCommandAction Command="{Binding DisplayDetailsCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=listView, Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>

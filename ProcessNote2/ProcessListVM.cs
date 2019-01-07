@@ -13,7 +13,7 @@ namespace ProcessNote2
     class ProcessListVM: ObservableObject
     {
         private static ProcessesModel processesList = new ProcessesModel();
-        private ICommand _saveProductCommand;
+        private ICommand displayDetailsCommand;
         private string startTime = "StartTime";
 
         public string StartTime
@@ -24,18 +24,6 @@ namespace ProcessNote2
                 startTime = value;
                 OnPropertyChanged("StartTime");
             }
-        }
-
-        private ProcessDetailsVM adamToCiul;
-
-        public ProcessDetailsVM AdamToCiul
-        {
-            get => adamToCiul;
-            set
-            {
-                adamToCiul = value;
-                OnPropertyChanged("AdamToCiul");
-            } 
         }
 
         public ProcessListVM()
@@ -51,7 +39,7 @@ namespace ProcessNote2
             set
             {
                 processVMs = value;
-                OnPropertyChanged("ProcessVMs");
+                //OnPropertyChanged("ProcessVMs");
             }
         }
 
@@ -63,25 +51,25 @@ namespace ProcessNote2
             }
         }
 
-        public void LoadProcessDetails(object param)
+        public void LoadProcessDetails(object selectedItem)
         {
-            var param2 = (ProcessVM) param;
-            ProcessDetailsVM details = new ProcessDetailsVM(param2.Id);
+            var convertedSelectedItem =  selectedItem as ProcessVM;
+            ProcessDetailsVM details = new ProcessDetailsVM(convertedSelectedItem.Id);
             StartTime = details.StartTime.ToString();
         }
 
-        public ICommand SaveProductCommand
+        public ICommand DisplayDetailsCommand
         {
             get
             {
-                if (_saveProductCommand == null)
+                if (displayDetailsCommand == null)
                 {
-                    _saveProductCommand = new RelayCommand(
+                    displayDetailsCommand = new RelayCommand(
                         
-                        param => LoadProcessDetails(param)
+                        selectedProcess => LoadProcessDetails(selectedProcess)
                     );
                 }
-                return _saveProductCommand;
+                return displayDetailsCommand;
             }
         }
 
