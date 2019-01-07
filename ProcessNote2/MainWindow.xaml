@@ -32,12 +32,12 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
-        <Grid>
+        <Grid Grid.Column="1" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -52,6 +52,5 @@
             <TextBlock Grid.Column="0" Grid.Row="3" Text="RAM Usage: "/>
             <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding StartTime}"/>
         </Grid>
-        
     </Grid>
 </Window>
