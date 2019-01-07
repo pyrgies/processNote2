@@ -32,6 +32,26 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StartTime}"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Start Time: "/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Running Time: "/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="CPU Usage: "/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="RAM Usage: "/>
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding StartTime}"/>
+        </Grid>
+        
     </Grid>
 </Window>
