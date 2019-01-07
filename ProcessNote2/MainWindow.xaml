@@ -19,7 +19,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Padding="5" ItemsSource="{Binding ProcessVMs, UpdateSourceTrigger=PropertyChanged}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
+        <ListView Name="listView" Padding="5" ItemsSource="{Binding ProcessVMs, UpdateSourceTrigger=PropertyChanged}" Background="LightCyan" FontFamily="Monospace" FontSize="16" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
@@ -28,10 +28,10 @@
             </ListView.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding SaveProductCommand, Mode=OneWay}"/>
+                    <i:InvokeCommandAction Command="{Binding SaveProductCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=listView, Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Adamek}"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StartTime}"/>
     </Grid>
 </Window>

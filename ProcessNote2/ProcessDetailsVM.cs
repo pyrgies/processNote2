@@ -11,9 +11,9 @@ namespace ProcessNote2
     {
         
 
-        public ProcessDetailsVM()
+        public ProcessDetailsVM(int Id)
         {
-            int id = 2736;
+            int id = Id;
             var process = Process.GetProcessById(id);
 
             StartTime = process.StartTime;

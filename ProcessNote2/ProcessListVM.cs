@@ -14,15 +14,15 @@ namespace ProcessNote2
     {
         private static ProcessesModel processesList = new ProcessesModel();
         private ICommand _saveProductCommand;
-        private string adamek = "Adam";
+        private string startTime = "StartTime";
 
-        public string Adamek
+        public string StartTime
         {
-            get => adamek;
+            get => startTime;
             set
             {
-                adamek = value;
-                OnPropertyChanged("Adamek");
+                startTime = value;
+                OnPropertyChanged("StartTime");
             }
         }
 
@@ -63,10 +63,11 @@ namespace ProcessNote2
             }
         }
 
-        public void LoadProcessDetails()
+        public void LoadProcessDetails(object param)
         {
-            Adamek = "krzysiu zjeb nie umie naprawic kurwa smiec jebany. Ja i Albi. Kurwo." +
-                     " i przegrywasz w jebanego ping ponga jak ja w pilkarzyki hehe chuj.";
+            var param2 = (ProcessVM) param;
+            ProcessDetailsVM details = new ProcessDetailsVM(param2.Id);
+            StartTime = details.StartTime.ToString();
         }
 
         public ICommand SaveProductCommand
@@ -76,9 +77,8 @@ namespace ProcessNote2
                 if (_saveProductCommand == null)
                 {
                     _saveProductCommand = new RelayCommand(
-                        param => LoadProcessDetails()
                         
-
+                        param => LoadProcessDetails(param)
                     );
                 }
                 return _saveProductCommand;
