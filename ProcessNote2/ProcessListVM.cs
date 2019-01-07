@@ -15,6 +15,9 @@ namespace ProcessNote2
         private static ProcessesModel processesList = new ProcessesModel();
         private ICommand displayDetailsCommand;
         private string startTime = "StartTime";
+        private string cpuUsage = "CpuUsage";
+        private string memoryUsage = "MemoryUsage";
+        private string runTime = "RunTime";
 
         public string StartTime
         {
@@ -23,6 +26,38 @@ namespace ProcessNote2
             {
                 startTime = value;
                 OnPropertyChanged("StartTime");
+            }
+        }
+
+        public string CpuUsage
+        {
+            get => cpuUsage;
+            set
+            {
+                cpuUsage = value;
+                OnPropertyChanged("CpuUsage");
+            }
+
+        }
+
+        public string MemoryUsage
+        {
+            get => memoryUsage;
+            set
+            {
+                memoryUsage = value;
+                OnPropertyChanged("MemoryUsage");
+            }
+
+        }
+
+        public string RunTime
+        {
+            get => runTime;
+            set
+            {
+                runTime = value;
+                OnPropertyChanged("RunTime");
             }
         }
 
@@ -56,7 +91,13 @@ namespace ProcessNote2
             var convertedSelectedItem =  selectedItem as ProcessVM;
             ProcessDetailsVM details = new ProcessDetailsVM(convertedSelectedItem.Id);
             StartTime = details.StartTime.ToString();
+            CpuUsage = details.CpuUsage.ToString() + " %";
+            MemoryUsage = details.MemoryUsage.ToString() + " MB";
+            RunTime = details.runTime.ToString();
         }
+
+        
+
 
         public ICommand DisplayDetailsCommand
         {

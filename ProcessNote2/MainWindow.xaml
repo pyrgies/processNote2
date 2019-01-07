@@ -10,12 +10,8 @@
     <Window.DataContext>
         <local:ProcessListVM/>
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="398*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
+  <Grid>
+    <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -46,11 +42,11 @@
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Start Time: "/>
             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StartTime}"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Running Time: "/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding RunTime}"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="CPU Usage: "/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CpuUsage}"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="RAM Usage: "/>
-            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding StartTime}"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding MemoryUsage}"/>
         </Grid>
     </Grid>
 </Window>
