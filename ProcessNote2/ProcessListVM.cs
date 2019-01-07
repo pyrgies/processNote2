@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,20 +10,20 @@ using System.Windows.Input;
 
 namespace ProcessNote2
 {
-    class ProcessListVM: INotifyPropertyChanged
+    class ProcessListVM: ObservableObject
     {
         private static ProcessesModel processesList = new ProcessesModel();
+        private ICommand displayDetailsCommand;
+        private string startTime = "StartTime";
 
-        private ProcessDetailsVM adamToCiul;
-
-        public ProcessDetailsVM AdamToCiul
+        public string StartTime
         {
-            get => adamToCiul;
+            get => startTime;
             set
             {
-                adamToCiul = value;
-                NotifyPropertyChanged();
-            } 
+                startTime = value;
+                OnPropertyChanged("StartTime");
+            }
         }
 
         public ProcessListVM()
@@ -30,45 +31,48 @@ namespace ProcessNote2
             CreateListOfProcessesVM();
         }
         
-        public List<ProcessVM> ProcessVMs { get; set; } = new List<ProcessVM>();
+        private ObservableCollection<ProcessVM> processVMs = new ObservableCollection<ProcessVM>();
 
-        public void CreateListOfProcessesVM()
+        public ObservableCollection<ProcessVM> ProcessVMs
         {
-            ProcessVMs = processesList.Processes.Select(process => new ProcessVM(process.ProcessName, process.Id)).ToList();
-        }
-
-        public void LoadProcessDetails(int id)
-        {
-            AdamToCiul = new ProcessDetailsVM(id);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")  
-        {  
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public ICommand costam;
-
-        public ICommand ShowProcessNameCommand
-        {
-            get
+            get => processVMs;
+            set
             {
-                return costam = new RelayCommand(CanView, DisplayMessage);
+                processVMs = value;
+                //OnPropertyChanged("ProcessVMs");
             }
         }
 
-        private bool CanView(object parameter)
+        public void CreateListOfProcessesVM()
         {
-            return true;
-        }       
-        
-
-        private void DisplayMessage(object parameter)
-        {
-             MessageBox.Show("BLA BLA");
-            
+            foreach (var process in processesList.Processes)
+            {
+                ProcessVMs.Add(new ProcessVM(process.ProcessName, process.Id));
+            }
         }
+
+        public void LoadProcessDetails(object selectedItem)
+        {
+            var convertedSelectedItem =  selectedItem as ProcessVM;
+            ProcessDetailsVM details = new ProcessDetailsVM(convertedSelectedItem.Id);
+            StartTime = details.StartTime.ToString();
+        }
+
+        public ICommand DisplayDetailsCommand
+        {
+            get
+            {
+                if (displayDetailsCommand == null)
+                {
+                    displayDetailsCommand = new RelayCommand(
+                        
+                        selectedProcess => LoadProcessDetails(selectedProcess)
+                    );
+                }
+                return displayDetailsCommand;
+            }
+        }
+
+
     }
 }
